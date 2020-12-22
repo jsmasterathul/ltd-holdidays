@@ -1,13 +1,30 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
+import Layout from "../components/layout";
+import Summary from "../components/home/summary-grid";
+import PhotoGrid from "../components/home/photo-grid";
+import Reviews from "../components/home/reviews";
+
 export default function Home() {
   return (
-    <div className="py-20">
-      <h1 className="text-center text-xs dark:text-gray-100">
-        Next.js + Tailwind CSS 2.0
-      </h1>
-      <button className="button button--action"> hello </button>
-    </div>
+    <Layout>
+      <div className="bg-home1 h-screen bg-cover bg-center bg-no-repeat flex justify-items-center items-center text-center">
+        <Summary />
+      </div>
+      <div className="flex-col w-11/12 md:w-9/12 lg:w-8/12 ml-auto mr-auto align-middle gap-y-4">
+        <div className=" text-center mt-4 mb-4 border-0 border-l-8 border-yellow-500 bg-yellow-100 p-4 rounded-md">
+          <span className="text-gray-700 font-light text-3xl">
+            Handcrafted Packages for the explorer inside you!
+          </span>
+          <br />
+          <span className="text-gray-500 font-light text-xl">
+            Explore like never before.
+          </span>
+        </div>
+        <PhotoGrid />
+        <Reviews/>
+      </div>
+    </Layout>
   );
 }

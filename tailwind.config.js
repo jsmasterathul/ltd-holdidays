@@ -6,7 +6,11 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: theme =>({
+        "home1" : "url('/images/home1.png')"
+      })
+    },
   },
   variants: {
     extend: {},
