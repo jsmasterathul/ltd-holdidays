@@ -9,12 +9,17 @@
     "v": "node -v"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "autoprefixer": "^10.0.2",
+    "firebase": "^8.2.1",
+    "firebaseui": "^4.7.1",
     "next": "10.0.3",
     "node": "14.15.1",
     "postcss": "^8.1.7",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-tiny-popover": "^6.0.3",
     "tailwindcss": "^2.0.1"
   }
 }

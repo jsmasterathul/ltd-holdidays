@@ -6,7 +6,18 @@ import Summary from "../components/home/summary-grid";
 import PhotoGrid from "../components/home/photo-grid";
 import Reviews from "../components/home/reviews";
 
+import {db} from "../config/firebase";
+import { useEffect } from "react";
+
 export default function Home() {
+
+  useEffect(()=>{
+    db.collection("categories").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+          console.log(doc.data());
+      });
+  });
+  })
   return (
     <Layout>
       <div className="bg-home1 h-screen bg-cover bg-center bg-no-repeat flex justify-items-center items-center text-center">
@@ -25,6 +36,7 @@ export default function Home() {
         <PhotoGrid />
         <Reviews/>
       </div>
+      <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
     </Layout>
   );
 }
