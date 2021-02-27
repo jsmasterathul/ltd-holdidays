@@ -11,13 +11,7 @@ import { useEffect } from "react";
 
 export default function Home() {
 
-  useEffect(()=>{
-    db.collection("categories").get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-          console.log(doc.data());
-      });
-  });
-  })
+ 
   return (
     <Layout>
       <div className="bg-home1 h-screen bg-cover bg-center bg-no-repeat flex justify-items-center items-center text-center">
