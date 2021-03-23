@@ -7,22 +7,24 @@ import { db } from "../../config/firebase";
 
 const SearchCategories = (props) => {
   const [categories, setCategories] = useState([]);
+  
+
   useEffect(() => {
     var docRef = db.collection("categories").doc("categories");
 
-    docRef
-      .get()
-      .then(function (doc) {
-        if (doc.exists) {
-          setCategories(doc.data().types);
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-        }
-      })
-      .catch(function (error) {
-        console.log("Error getting document:", error);
-      });
+    // docRef
+    //   .get()
+    //   .then(function (doc) {
+    //     if (doc.exists) {
+    //       setCategories(doc.data().types);
+    //     } else {
+    //       // doc.data() will be undefined in this case
+    //       console.log("No such document!");
+    //     }
+    //   })
+    //   .catch(function (error) {
+    //     console.log("Error getting document:", error);
+    //   });
   });
 
   return (

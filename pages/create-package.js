@@ -3,29 +3,12 @@ import { useState, useEffect } from "react";
 import { db } from "../config/firebase";
 import SearchCategories from "../components/utils/search-categories";
 import SearchInclusions from "../components/utils/search-inclusions";
+import FileUpload from "../components/utils/file-upload";
 
 export default function CreatePackage() {
   const [tripdetails, setTripdetails] = useState({});
   const [itinerary, setItinerary] = useState([]);
-  const [selectedFiles, setSelectedFiles] = useState([]);
-  const [preview, setPreview] = useState();
-
-  useEffect(() => {
-    if (selectedFiles.length === 0) {
-        setPreview(undefined)
-        return
-    }
-
-    console.log(selectedFiles);
-
-    const objectUrl = URL.createObjectURL(selectedFiles)
-    setPreview(objectUrl)
-
-    // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl)
-}, [selectedFiles])
-
-
+  
   const savePackage = () => {
     // itinerary is converted from an array to objects
     // because firebase does not support nested arrays.
@@ -113,15 +96,7 @@ export default function CreatePackage() {
     </div>
   );
 
-  const setSelectFile = (e) => {
-    if (!e.target.files || e.target.files.length === 0) {
-      setSelectedFiles(undefined);
-      return;
-    }
 
-    // I've kept this example simple by using the first image instead of multiple
-    setSelectedFiles(e.target.files[0]);
-  };
 
   return (
     <div className="flex flex-col w-full sm:w-5/6 md:w-2/5 gap-y-8 items-center mx-auto p-4">
@@ -224,16 +199,13 @@ export default function CreatePackage() {
           <TextField label="Nights"></TextField>
         </div>
       </div>
-      <div className="w-full">
-        <input type="file" multiple onChange={setSelectFile}></input>
-        {preview &&  <img src={preview} /> }
-      </div>
+      <FileUpload></FileUpload>
       <div className="flex ml-auto">
-        <div>
+        {/* <div>
           <Button onClick={savePackage} onChange={setSelectFile}>
             Save package
           </Button>
-        </div>
+        </div> */}
         <div>
           <Button>Publish package</Button>
         </div>
