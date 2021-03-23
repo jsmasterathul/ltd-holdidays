@@ -12,19 +12,18 @@ export default function CreatePackage() {
 
   useEffect(() => {
     if (selectedFiles.length === 0) {
-        setPreview(undefined)
-        return
+      setPreview(undefined);
+      return;
     }
 
     console.log(selectedFiles);
 
-    const objectUrl = URL.createObjectURL(selectedFiles)
-    setPreview(objectUrl)
+    const objectUrl = URL.createObjectURL(selectedFiles);
+    setPreview(objectUrl);
 
     // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl)
-}, [selectedFiles])
-
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFiles]);
 
   const savePackage = () => {
     // itinerary is converted from an array to objects
@@ -151,6 +150,7 @@ export default function CreatePackage() {
       </div>
       <div className="ml-auto">
         <Button
+          color="secondary"
           onClick={(e) =>
             setItinerary((prevVal) => [
               ...prevVal,
@@ -226,7 +226,7 @@ export default function CreatePackage() {
       </div>
       <div className="w-full">
         <input type="file" multiple onChange={setSelectFile}></input>
-        {preview &&  <img src={preview} /> }
+        {preview && <img src={preview} />}
       </div>
       <div className="flex ml-auto">
         <div>
