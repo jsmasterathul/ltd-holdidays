@@ -1,0 +1,17 @@
+.scrollbarhorizontal::-webkit-scrollbar {
+  height: 6px;
+}
+
+/* Track */
+
+.scrollbarhorizontal::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px lightgray;
+  border-radius: 10px;
+}
+
+/* Handle */
+
+.scrollbarhorizontal::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 10px;
+}

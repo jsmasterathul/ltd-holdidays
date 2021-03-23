@@ -1,3 +1,5 @@
+/* @import url("../theme/theme.js") ; */
+
 @tailwind base;
 
 /* Write your own custom base styles here */
@@ -20,15 +22,48 @@ body {
 @tailwind utilities;
 /* Stop purging. */
 
+@import url("https://fonts.googleapis.com/css2?family=Qwigley&display=swap");
+
 /* Your own custom utilities */
 
-@layer components{
-  .button{
+@import "../theme/theme.css";
+/* Fire Base Css */
+.mdl-button--raised.mdl-button--colored {
+  background-color: var(--main-primary-color) !important;
+}
+
+.mdl-button.mdl-js-button.mdl-button--primary {
+  color: var(--main-primary-color) !important;
+}
+
+.firebaseui-textfield.mdl-textfield .firebaseui-label::after {
+  background-color: var(--main-primary-color) !important;
+  /* border-color: green ; */
+}
+
+.firebaseui-textfield.mdl-textfield:focus
+  + .firebaseui-textfield.mdl-textfield
+  .firebaseui-label {
+  color: var(--main-primary-color) !important;
+  /* border-color: green ; */
+}
+
+a.firebaseui-link {
+  color: var(--main-primary-color) !important;
+}
+.progressbar {
+  background-color: var(--main-color-primary) !important;
+}
+
+@layer components {
+  .button {
     @apply px-3 py-2 text-sm font-medium rounded-md text-white shadow-sm lg:px-8;
   }
-  .button--action{
+  .button--action {
     @apply bg-indigo-600 shadow hover:bg-indigo-500;
   }
-  .button--success{}
-  .buttone--warning{}
+  .button--success {
+  }
+  .buttone--warning {
+  }
 }
