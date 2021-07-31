@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 
 import LoginForm from "./auth/login";
 import ProfileSection from "./profile/profile";
+import Footer from "../components/home/footer";
+
 import authContext from "../contexts/auth-context";
 
 export default function Layout({ children, home }) {
@@ -30,7 +32,7 @@ export default function Layout({ children, home }) {
           <link rel="icon" href="/images/Logo.png" />
         </Head>
         <header>
-          <div className="fixed w-screen bg-white bg-opacity-60">
+          <div className="fixed w-screen bg-white bg-opacity-60 z-50">
             <div className="flex p-4 items-center">
               <div>
                 <img src="/images/Logo.png" className="w-48" />
@@ -42,6 +44,9 @@ export default function Layout({ children, home }) {
           </div>
         </header>
         <main>{children}</main>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     </authContext.Provider>
   );

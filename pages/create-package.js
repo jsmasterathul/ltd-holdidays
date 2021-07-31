@@ -126,6 +126,7 @@ export default function CreatePackage() {
       </div>
       <div className="ml-auto">
         <Button
+          color="secondary"
           onClick={(e) =>
             setItinerary((prevVal) => [
               ...prevVal,
