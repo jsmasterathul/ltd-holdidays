@@ -8,7 +8,9 @@ import FileUpload from "../components/utils/file-upload";
 export default function CreatePackage() {
   const [tripdetails, setTripdetails] = useState({});
   const [itinerary, setItinerary] = useState([]);
-  
+  const [pickedFiles, setPickedFiles] = useState([]);
+  const [showUploadPhoto, setShowUploadPhoto] = useState(false);
+
   const savePackage = () => {
     // itinerary is converted from an array to objects
     // because firebase does not support nested arrays.
@@ -96,10 +98,8 @@ export default function CreatePackage() {
     </div>
   );
 
-
-
   return (
-    <div className="flex flex-col w-full sm:w-5/6 md:w-2/5 gap-y-8 items-center mx-auto p-4">
+    <div className="flex flex-col w-full sm:w-5/6 md:w-2/5 gap-y-8 items-center mx-auto p-4 ">
       <div className="w-full">
         <TextField
           label="Title"
@@ -200,7 +200,23 @@ export default function CreatePackage() {
           <TextField label="Nights"></TextField>
         </div>
       </div>
-      <FileUpload></FileUpload>
+      <div>
+        <Button onClick={(e) => setShowUploadPhoto(true)}>Select Files</Button>
+      </div>
+      {showUploadPhoto && (
+        <div>
+          <FileUpload
+            setPickedFiles={setPickedFiles}
+            pickedFiles={pickedFiles}
+          ></FileUpload>
+        </div>
+      )}
+      <div>
+        {pickedFiles.map((fileName, index) => (
+          <div key={index}>{fileName}</div>
+        ))}
+      </div>
+
       <div className="flex ml-auto">
         {/* <div>
           <Button onClick={savePackage} onChange={setSelectFile}>
@@ -208,7 +224,7 @@ export default function CreatePackage() {
           </Button>
         </div> */}
         <div>
-          <Button>Publish package</Button>
+          <Button onClick={(e) => savePackage()}>Publish package</Button>
         </div>
       </div>
     </div>

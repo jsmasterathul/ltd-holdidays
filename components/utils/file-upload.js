@@ -1,15 +1,18 @@
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField, Modal } from "@material-ui/core";
 import { useState, useEffect } from "react";
 import { storage } from "../../config/firebase";
 import firebase from "firebase/app";
-
+import UploadedFileList from "./uploaded-files";
 
 const FileUpload = (props) => {
+  const { setPickedFiles, pickedFiles } = props;
+
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [preview, setPreview] = useState([]);
   const [fileNames, setFileNames] = useState([]);
   const [fileNameError, setFileNameError] = useState([]);
   const [uploadedIndexes, setUploadedIndexes] = useState([]);
+  const [showUploadPhotos, setShowUploadedPhotos] = useState(true);
 
   const storageRef = storage.ref();
 
@@ -35,7 +38,6 @@ const FileUpload = (props) => {
   }, [selectedFiles]);
 
   const setSelectFile = (e) => {
-   
     setSelectedFiles((prevVal) => [...prevVal, ...Array.from(e.target.files)]);
   };
 
@@ -145,8 +147,30 @@ const FileUpload = (props) => {
 
   return (
     <div className="w-full">
-      <input type="file" multiple onChange={setSelectFile}></input>
-      {preview && getFilePreviewWithUpload()}
+      <Modal
+        open={showUploadPhotos}
+        onClose={() => setShowUploadedPhotos(false)}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <div className="flex flex-col bg-gray-50">
+          <div>
+            <input type="file" multiple onChange={setSelectFile}></input>
+          </div>
+          {/* <button onClick={(e) => setShowUploadedPhotos(true)}>
+        Show uploaded photos
+      </button> */}
+
+          {preview && getFilePreviewWithUpload()}
+
+          <div>
+            <UploadedFileList
+              onFileSelect={setPickedFiles}
+              pickedFiles={pickedFiles}
+            />
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
