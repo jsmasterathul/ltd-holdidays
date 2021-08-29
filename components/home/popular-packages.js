@@ -1,5 +1,7 @@
 import { getFormattedCurrency } from "../utils/index";
 import classes from "./popular-packages.module.css";
+import WhatsAppContactUs from "../contact-us/contact-us";
+
 import { useState } from "react";
 export default function PopularPackages() {
   const data = [
@@ -85,6 +87,8 @@ export default function PopularPackages() {
   ];
 
   const [showToolTip, setShowToolTip] = useState(false);
+  const [clickedItem, setClickedItem] = useState(null);
+
   return (
     <div className="mb-4 mt-4">
       <div className=" text-center mt-4 mb-4 border-0 border-l-8 border-yellow-500 bg-yellow-100 p-4 rounded-md">
@@ -101,6 +105,12 @@ export default function PopularPackages() {
           <div
             key={index}
             className=" inline-block  m-2 align-top cursor-pointer transition-all ease-in-out scale-100 duration-500 transform hover:scale-105"
+            onClick={(e) =>
+              setClickedItem({
+                currentTarget: e.currentTarget,
+                message: `I am intrested in ${item.title}`,
+              })
+            }
           >
             <div className={`relative w-80 h-96 rounded-md  overflow-hidden `}>
               <div
@@ -160,6 +170,13 @@ export default function PopularPackages() {
           </div>
         ))}
       </div>
+   
+      <WhatsAppContactUs
+        currentTarget={clickedItem ? clickedItem.currentTarget : null}
+        setCurrentTarget={setClickedItem}
+        message={clickedItem ? clickedItem.message : null}
+      />
+
     </div>
   );
 }

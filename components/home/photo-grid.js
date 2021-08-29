@@ -1,3 +1,5 @@
+import { useState } from "react";
+import WhatsAppContactUs from "../contact-us/contact-us";
 import classes from "./photo-grid.module.css";
 
 export default function PhotoGrid() {
@@ -45,14 +47,22 @@ export default function PhotoGrid() {
     },
   ];
 
+  const [clickedItem, setClickedItem] = useState(null);
+
   return (
     <>
       <div
-        className={` grid-cols-3 grid-flow-row gap-2 hidden  lg:grid ${classes.gridRoot}`}
+        className={` grid-cols-3 grid-flow-row gap-2 hidden  lg:grid ${classes.gridRoot} cursor-pointer `}
       >
         {data.map((item, index) => (
           <div
             key={index}
+            onClick={(e) =>
+              setClickedItem({
+                currentTarget: e.currentTarget,
+                message: `I am intrested in ${item.title}`,
+              })
+            }
             className={`relative ${
               item.rowSpan ? `row-span-${item.rowSpan}` : ""
             } ${
@@ -71,7 +81,9 @@ export default function PhotoGrid() {
           </div>
         ))}
       </div>
-      <div className={`grid grid-cols-2  md:grid-cols-3 grid-flow-row gap-1 lg:hidden`}>
+      <div
+        className={`grid grid-cols-2  md:grid-cols-3 grid-flow-row gap-1 lg:hidden`}
+      >
         {data.map((item, index) => (
           <div
             key={index}
@@ -89,6 +101,12 @@ export default function PhotoGrid() {
           </div>
         ))}
       </div>
+
+      <WhatsAppContactUs
+        currentTarget={clickedItem ? clickedItem.currentTarget : null}
+        setCurrentTarget={setClickedItem}
+        message={clickedItem ? clickedItem.message : null}
+      />
 
       {/* 
       <div className=" relative row-span-2 rounded-md ">

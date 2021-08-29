@@ -17,12 +17,22 @@ export default function Layout({ children, home }) {
     }
   }, [user]);
 
-  const getLoginForm = () => (
-    <div onClick={() => setShowLoginForm(true)}>
-      Sign-In
-      {showLoginForm && <LoginForm />}
-    </div>
-  );
+  // ToDo : uncomment this when create package is over
+
+  // const getLoginForm = () => (
+  //   <div onClick={() => setShowLoginForm(true)}>
+  //     Sign-In
+  //     {showLoginForm && <LoginForm />}
+  //   </div>
+  // );
+
+  const getPhoneNumberSection = () => (
+    <a
+    href='tel:+918197244462'
+    >
+      Call us +91 8197244462
+    </a>
+  )
   const getProfileSection = () => <ProfileSection />;
 
   return (
@@ -38,7 +48,8 @@ export default function Layout({ children, home }) {
                 <img src="/images/Logo.png" className="w-48" />
               </div>
               <div className="ml-auto pr-8 cursor-pointer">
-                {user ? getProfileSection() : getLoginForm()}
+                {/*user ? getProfileSection() : getLoginForm()*/}
+                {getPhoneNumberSection()}
               </div>
             </div>
           </div>
